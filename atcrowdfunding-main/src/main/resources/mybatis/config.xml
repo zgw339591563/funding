@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases >
+       <typeAlias type="com.atguigu.atcrowdfunding.common.User" alias="user"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.common.CertImg" alias="certImg"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.common.Member" alias="member"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.user.bean.Role" alias="role"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.common.Ticket" alias="ticket"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.manager.bean.Cert" alias="cert"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.manager.bean.ProjectType" alias="projectType"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.manager.bean.Param" alias="param"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.manager.bean.Message" alias="message"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.manager.bean.Advert" alias="advert"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.user.bean.Permission" alias="permission"/>
+       <typeAlias type="com.atguigu.atcrowdfunding.project.bean.Project" alias="project"/>
+    </typeAliases>
+</configuration>

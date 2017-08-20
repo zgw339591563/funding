@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.atcrowdfunding.project.dao.ProjectDao">
+
+    <select id="queryAll" resultType="project">
+        select * from t_project where authstatus = '1'
+    </select>
+
+    <select id="queryById" resultType="project">
+        select * from t_project where id = #{id}
+    </select>
+    
+    <select id="queryHotProjects" resultType="project">
+        select
+            *
+        from t_project
+        where authstatus = '1'
+        order by follower desc
+        limit 3
+    </select>
+
+</mapper>

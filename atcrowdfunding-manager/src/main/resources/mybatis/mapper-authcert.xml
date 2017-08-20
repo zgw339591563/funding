@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.atcrowdfunding.manager.dao.AuthCertDao">
+
+    <select id="queryTicketByPiid" resultType="ticket">
+        select * from t_ticket where piid = #{piid}
+    </select>
+
+    <select id="queryMemberByTicket" resultType="member">
+        select * from t_member where id = #{memberid}
+    </select>
+    
+    <select id="queryMemberById" resultType="member">
+        select * from t_member where id = #{id}
+    </select>
+    
+    <select id="queryCertImgsByMemberid" resultType="certImg">
+        select
+            a.*,
+            b.name as certname
+        from t_member_cert a
+        join t_cert b on a.certid = b.id
+        where a.memberid = #{memberid}
+    </select>
+</mapper>

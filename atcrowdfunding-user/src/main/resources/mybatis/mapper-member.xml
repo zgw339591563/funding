@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.atcrowdfunding.user.dao.MemberDao">
+    
+    <select id="queryCertsByAccttype" resultType="cert">
+        select * from t_cert
+        where id in (
+            select certid from t_account_type_cert
+            where accttype = #{accttype}
+        )
+    </select>
+    
+    <select id="quertTicketByMember" resultType="ticket">
+        select * from t_ticket where memberid = #{id} and status = '0'
+    </select>
+    
+    <select id="queryMember" resultType="member">
+        select * from t_member
+        where loginacct = #{loginacct} and userpswd = #{userpswd}
+    </select>
+    
+    <insert id="insertTicket">
+        insert into t_ticket (
+            memberid, status
+        ) values (
+            #{memberid}, #{status}
+        )
+    </insert>
+    
+    <insert id="insertCertImg">
+        insert into t_member_cert (
+            memberid,certid,iconpath
+        ) values (
+            #{memberid},#{certid},#{iconpath}
+        )
+    </insert>
+    
+    <update id="updateAcctType">
+        update t_member
+        set accttype = #{accttype}
+        where id = #{id}
+    </update>
+    
+    <update id="updateTicketProcessStep">
+        update t_ticket
+        set pstep = #{pstep}
+        where id = #{id}
+    </update>
+    
+    <update id="updateBasicinfo">
+        update t_member
+        set
+            realname = #{realname},
+            cardnum = #{cardnum},
+            tel = #{tel}
+         where id = #{id}
+    </update>
+    
+    <update id="updateTicket4PI">
+        update t_ticket
+        set
+            pstep = #{pstep},
+            piid = #{piid},
+            authcode = #{authcode}
+        where id = #{id}
+    </update>
+    
+    <update id="updateEmail">
+        update t_member
+        set
+            email = #{email}
+         where id = #{id}
+    </update>
+    
+    <update id="updateAuthStatus">
+        update t_member
+        set
+            authstatus = #{authstatus}
+         where id = #{id}
+    </update>
+
+</mapper>

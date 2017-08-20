@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.atcrowdfunding.manager.dao.ParamDao">
+
+    <select id="queryById" resultType="param">
+        select * from t_param where id = #{id}
+    </select>
+
+    <select id="queryCount" resultType="int">
+        select count(*) from t_param
+        <where>
+            <if test="pagetext != null">
+            and name like concat('%', #{pagetext}, '%')
+            </if>
+        </where>
+    </select>
+    
+    <select id="pageQuery" resultType="param">
+        select * from t_param
+        <where>
+            <if test="pagetext != null">
+            and name like concat('%', #{pagetext}, '%')
+            </if>
+        </where>
+        limit #{start}, #{size}
+    </select>
+    
+    <insert id="insertParam">
+        insert into t_param (
+            name,code,val
+        ) values (
+            #{name},#{code},#{val}
+        )
+    </insert>
+    
+    <update id="updateParam">
+        update
+            t_param
+        set
+            name = #{name},
+            code = #{code},
+            val = #{val}
+        where id = #{id}
+    </update>
+    
+    <delete id="deleteParam">
+        delete from t_param where id = #{id}
+    </delete>
+    
+    <delete id="deleteParams">
+        delete from t_param where id in 
+        <foreach collection="datas" item="p" open="(" close=")" separator=",">
+        #{p.id}
+        </foreach>
+    </delete>
+
+</mapper>
